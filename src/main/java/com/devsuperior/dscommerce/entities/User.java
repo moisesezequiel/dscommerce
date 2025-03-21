@@ -84,6 +84,7 @@ public class User {
         this.phone = phone;
     }
 
+    //nunca fazer setter de coleção
     public List<Order> getOrders() {
         return orders;
     }
