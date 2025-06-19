@@ -4,6 +4,8 @@ import com.devsuperior.dscommerce.dto.ProductDTO;
 import com.devsuperior.dscommerce.entities.Product;
 import com.devsuperior.dscommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +28,8 @@ public class ProductController {
         return dto;
     }
 
-    @GetMapping
-    public List<ProductDTO> findAll(){
-        return service.findAll();
+    @GetMapping                                        //exemplos de query params (postman)
+    public Page<ProductDTO> findAll(Pageable pageable){//products?size=12&page=1&sort=name,desc
+        return service.findAll(pageable);
     }
 }
