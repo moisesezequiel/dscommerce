@@ -18,17 +18,30 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    @Transactional(readOnly = true) //looking do bando ce dados para ficar mais rapido e boa pratica
+    @Transactional(readOnly = true) //looking do banco de dados para ficar mais rapido e boa pratica
     public ProductDTO findById(Long id){
         Product product = repository.findById(id).get();
         return new ProductDTO(product);
 
     }
 
-    @Transactional(readOnly = true) //looking do bando ce dados para ficar mais rapido e boa pratica
+    @Transactional(readOnly = true)
     public Page<ProductDTO> findAll(Pageable pageable){
         Page<Product> products = repository.findAll(pageable);
         return products.map(x -> new ProductDTO(x));
 
+    }
+
+    @Transactional(readOnly = true)
+    public ProductDTO insert(ProductDTO dto){
+        Product entity = new Product();
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setPrice(dto.getPrice());
+        entity.setImgUrl(dto.getImgUrl());
+
+        entity = repository.save(entity);
+
+        return new ProductDTO(entity);
     }
 }
