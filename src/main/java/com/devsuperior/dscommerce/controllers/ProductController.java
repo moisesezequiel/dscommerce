@@ -22,16 +22,9 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id ){
-
-        try {
+    public ResponseEntity<ProductDTO> findById(@PathVariable Long id ){
             ProductDTO dto =  service.findById(id);
             return ResponseEntity.ok(dto);
-        }catch (ResourceNotFoundException e){
-            CustomError err = new CustomError(Instant.now(), 404 , e.getMessage(), "Caminho");
-            return ResponseEntity.status(404).body(err);
-        }
-
     }
 
     @GetMapping                                        //exemplos de query params (postman)
@@ -59,7 +52,7 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
 
         return ResponseEntity.noContent().build();
