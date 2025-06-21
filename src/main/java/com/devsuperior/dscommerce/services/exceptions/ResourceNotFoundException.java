@@ -1,9 +1,9 @@
 package com.devsuperior.dscommerce.services.exceptions;
 
-public class RecourceNotFoundException extends  RuntimeException{
+public class ResourceNotFoundException extends  RuntimeException{
     //Runtime exception não exige bloco tryCatch (Exception sim)
 
-    public RecourceNotFoundException(String msg) {
+    public ResourceNotFoundException(String msg) {
         super(msg);
     }
 }
