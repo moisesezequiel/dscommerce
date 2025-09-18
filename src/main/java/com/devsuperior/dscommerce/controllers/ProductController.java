@@ -29,8 +29,9 @@ public class ProductController {
     }
 
     @GetMapping                                        //exemplos de query params (postman)
-    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable){//products?size=12&page=1&sort=name,desc
-        Page<ProductDTO> dto = service.findAll(pageable);
+    public ResponseEntity<Page<ProductDTO>> findAll(@RequestParam(name = "name", defaultValue = "") String name,
+                                                    Pageable pageable){//products?size=12&page=1&sort=name,desc
+        Page<ProductDTO> dto = service.findAll(name,pageable);
         return ResponseEntity.ok(dto);
     }
 
