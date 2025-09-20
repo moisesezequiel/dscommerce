@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devsuperior.dscommerce.dto.ProductDTO;
+import com.devsuperior.dscommerce.dto.ProductMinDTO;
 import com.devsuperior.dscommerce.services.ProductService;
 
 import jakarta.validation.Valid;
@@ -38,9 +39,9 @@ public class ProductController {
     }
 
     @GetMapping                                        //exemplos de query params (postman)
-    public ResponseEntity<Page<ProductDTO>> findAll(@RequestParam(name = "name", defaultValue = "") String name,
+    public ResponseEntity<Page<ProductMinDTO>> findAll(@RequestParam(name = "name", defaultValue = "") String name,
                                                     Pageable pageable){//products?size=12&page=1&sort=name,desc
-        Page<ProductDTO> dto = service.findAll(name,pageable);
+        Page<ProductMinDTO> dto = service.findAll(name,pageable);
         return ResponseEntity.ok(dto);
     }
 
