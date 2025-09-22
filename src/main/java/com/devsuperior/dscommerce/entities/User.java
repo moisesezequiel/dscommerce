@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -128,17 +129,6 @@ public class User implements UserDetails{
     	
     }
     
-    public boolean hasRole(String roleName) {
-    	for (Role role : roles) {
-    		if (role.getAuthority().equals(roleName)) {
-				return true;
-			}
-			
-		}
-    	return false;
-    	
-    }
-    
 	@Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -162,5 +152,16 @@ public class User implements UserDetails{
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return email;
+	}
+	
+	public boolean hasRole(String roleName) {
+		for(Role role : roles) {
+			if (role.getAuthority().equals(roleName)) {
+				return true;
+				
+			}
+		}
+		return false;
+		
 	}
 }
